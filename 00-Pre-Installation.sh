@@ -2,7 +2,7 @@
 
 echo -ne "Pre Installation"
 
-setfont ter-132n
+setfont ter-120n
 
 if ! ping -c 5 google.com &> /dev/null; then
     echo -ne "Connect the internet with command:\n"
@@ -38,6 +38,6 @@ echo -ne "- mkswap /dev/... [Linux Swap]\n"
 echo -ne "- swapon /dev/... [Linux Swap]\n"
 echo -ne "- mount /dev/... /mnt [Linux Filesystem]\n"
 echo -ne "- mkdir /mnt/boot"
-echo -ne "- mount /dev/... /mnt/boot or /mnt/efi[EFI]\n"
+echo -ne "- mount /dev/... /mnt/boot [EFI]\n"
 echo -ne "- lsblk\n"
 echo -ne "- done\n"
