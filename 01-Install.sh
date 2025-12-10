@@ -11,7 +11,7 @@ echo "
 "
 cat /mnt/etc/fstab
 
-( arch-chroot /mnt 
+arch-chroot /mnt /bin/bash << EOF
 passwd
 
 useradd -m -g users -G wheel,storage,video,audio -s /bin/bash ${1}
@@ -38,7 +38,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable --now NetworkManager
 systemctl enable --now bluetooth
-
-exit )
+EOF
 
 umount -IR /mnt
