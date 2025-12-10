@@ -3,7 +3,7 @@ echo -ne "
 #                    Arch Installation                  #
 #########################################################
 "
-pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake bluez bluez-utils networkmanager dhclient cargo gcc pipewire wget curl git glibc --noconfirm --needed
+pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake bluez bluez-utils networkmanager dhclient cargo gcc pipewire wget curl git glibc grub efibootmgr dosfstools mtools --noconfirm --needed
 
 genfstab -U /mnt >> /mnt/etc/fstab
 echo " 
@@ -11,7 +11,7 @@ echo "
 "
 cat /mnt/etc/fstab
 
-arch-chroot /mnt
+( arch-chroot /mnt 
 passwd
 
 useradd -m -g users -G wheel,storage,video,audio -s /bin/bash ${1}
@@ -33,9 +33,12 @@ cat /etc/locale.conf
 echo "${1}" > /etc/hostname
 echo -e "127.0.1.1\t${1}.localdomain\t${1}" > /etc/hosts
 
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
 systemctl enable --now NetworkManager
 systemctl enable --now bluetooth
 
-exit
+exit )
 
 umount -IR /mnt
