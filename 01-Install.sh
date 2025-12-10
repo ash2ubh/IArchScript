@@ -11,7 +11,7 @@ echo "
 "
 cat /mnt/etc/fstab
 
-arch-root /mnt
+arch-chroot /mnt
 passwd
 
 useradd -m -g users -G wheel,storage,video,audio -s /bin/bash ${1}
