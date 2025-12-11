@@ -44,7 +44,7 @@ format_partition(){
 install_base(){
     echo "Start Installing base system..."
 
-    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake man-db man-pages texinfo bluez bluez-utils networkmanager network-manager-applet dhclient openssh cargo gcc pipewire alsa-utils pipewire-pulse pipewire-jack sof-firmware wget curl git glibc grub efibootmgr dosfstools mtools iptable-nft ipset acpid --noconfirm --needed
+    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake man-db man-pages texinfo bluez bluez-utils networkmanager network-manager-applet dhclient openssh cargo gcc pipewire alsa-utils pipewire-pulse pipewire-jack sof-firmware wget curl git glibc grub efibootmgr dosfstools mtools acpid --noconfirm --needed
 
     echo "Finished Installing base system."
 }
