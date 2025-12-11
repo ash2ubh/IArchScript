@@ -85,6 +85,6 @@ for PKG in "${base_key_lst[@]}"; do
 done
 printf "\n%s - Finish Install base-devel & archlinux-keyring \n"
 
-pacman -S --noconfirm --needed nvidia-xconfig
-pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
-pacman -S --noconfirm --needed fastfetch htop 
+# pacman -S --noconfirm --needed nvidia-xconfig
+# pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
+# pacman -S --noconfirm --needed fastfetch htop 
