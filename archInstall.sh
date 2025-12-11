@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-TARGET_DISK = "$1"
-HOSTNAME = "$2"
-USERNAME = "$3"
-PASSWORD = "$4"
-TIMEZONE = "$5"
+TARGET_DISK="$1"
+HOSTNAME="$2"
+USERNAME="$3"
+PASSWORD="$4"
+TIMEZONE="$5"
 
 BOOT_PART = "1"
 ROOT_PART = "2"
