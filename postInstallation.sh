@@ -11,10 +11,9 @@ if ! ping -c 5 google.com &> /dev/null; then
     exit 1
 fi
 
-sudo pacman -S --noconfirm --needed pacman-contrib curl
-sudo pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
+sudo pacman -S pacman-contrib reflector rsync --noconfirm
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-
+reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
 
 #Add parallel downloading
 sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
@@ -88,3 +87,7 @@ printf "\n%s - Finish Install base-devel & archlinux-keyring \n"
 # pacman -S --noconfirm --needed nvidia-xconfig
 # pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
 # pacman -S --noconfirm --needed fastfetch htop 
+# preload
+# glibc
+# dnsmasq
+# htop
