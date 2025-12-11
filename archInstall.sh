@@ -69,6 +69,7 @@ HOSTNAME="$HOSTNAME"
 USERNAME="$USERNAME"
 PASSWORD="$PASSWORD"
 TIMEZONE="$TIMEZONE"
+BOOT_PART="$BOOT_PART"
 
 echo "root:\$PASSWORD" | chpasswd
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -76,7 +77,7 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 
 useradd -m -G wheel,audio,video,storage,optical -s /bin/bash "\$USERNAME"
 echo "\$USERNAME:\$PASSWORD" | chpasswd
-mkdir -m 755 /etc/sudoers.d
+# mkdir -m 755 /etc/sudoers.d
 echo "\$USERNAME ALL=(ALL) ALL" > /etc/sudoers.d/\$USERNAME
 chmod 0440 /etc/sudoers.d/\$USERNAME
 
@@ -97,7 +98,8 @@ cat > /etc/hosts << HOSTS_EOF
 127.0.1.1   \$HOSTNAME.localdomain \$HOSTNAME
 HOSTS_EOF
 
-grub-install --target=x86_64-efi --efi-directory=\$TARGET_DISK --bootloader-id=GRUB
+mount "\$TARGET_DISK\$BOOT_PART" /boot
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable --now NetworkManager
