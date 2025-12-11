@@ -11,17 +11,17 @@ if ! ping -c 5 google.com &> /dev/null; then
     exit 1
 fi
 
-pacman -S --noconfirm --needed pacman-contrib curl
-pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+sudo pacman -S --noconfirm --needed pacman-contrib curl
+sudo pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 
 #Add parallel downloading
-sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 #Enable multilib
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-pacman -Sy --noconfirm --needed
+sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+sudo pacman -Sy --noconfirm --needed
 
 check_pkg_i(){
     if pacman -Qi "${1}" &>/dev/null; then
