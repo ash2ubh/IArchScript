@@ -6,9 +6,9 @@ USERNAME="$3"
 PASSWORD="$4"
 TIMEZONE="$5"
 
-BOOT_PART = "1"
-ROOT_PART = "2"
-SWAP_PART = "3"
+BOOT_PART="1"
+ROOT_PART="2"
+SWAP_PART="3"
 
 check_internet_connection(){
     if ! ping -c 5 google.com &> /dev/null; then
