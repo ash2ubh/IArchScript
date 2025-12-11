@@ -44,7 +44,7 @@ format_partition(){
 install_base(){
     echo "Start Installing base system..."
 
-    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake bluez bluez-utils networkmanager dhclient cargo gcc pipewire wget curl git glibc grub efibootmgr dosfstools mtools --noconfirm --needed
+    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode nano sudo make cmake man-db man-pages texinfo bluez bluez-utils networkmanager network-manager-applet dhclient openssh cargo gcc pipewire alsa-utils pipewire-pulse pipewire-jack sof-firmware wget curl git glibc grub efibootmgr dosfstools mtools iptable-nft ipset acpid --noconfirm --needed
 
     echo "Finished Installing base system."
 }
@@ -76,6 +76,9 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 
 useradd -m -G wheel,audio,video,storage,optical -s /bin/bash "\$USERNAME"
 echo "\$USERNAME:\$PASSWORD" | chpasswd
+mkdir -m 755 /etc/sudoers.d
+echo "\$USERNAME ALL=(ALL) ALL" > /etc/sudoers.d/\$USERNAME
+chmod 0440 /etc/sudoers.d/\$USERNAME
 
 ln -sf /usr/share/zoneinfo/\$TIMEZONE /etc/localtime
 hwclock --systohc
@@ -84,6 +87,8 @@ sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 cat /etc/locale.conf
+
+echo "KEYMAP=us" >> /etc/vconsole.conf
 
 echo "\$HOSTNAME" > /etc/hostname
 cat > /etc/hosts << HOSTS_EOF
