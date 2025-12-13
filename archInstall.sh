@@ -202,7 +202,7 @@ format_partition(){
 install_base(){
     echo "Start Installing base system..."
 
-    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode networkmanager wireless_tools wpa_supplicant bluez bluez-utils pipewire alsa-utils pipewire-pulse pipewire-jack sof-firmware dosfstools mtools util-linux exfatprogs e2fsprogs sudo nano man-db man-pages texinfo wget curl git grub efibootmgr os-prober --noconfirm --needed
+    pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode networkmanager wireless_tools wpa_supplicant bluez bluez-utils pipewire pipewire-alsa alsa-utils pipewire-pulse pipewire-jack sof-firmware dosfstools mtools util-linux exfatprogs e2fsprogs sudo nano man-db man-pages texinfo wget curl git grub efibootmgr os-prober --noconfirm --needed
 
     echo "Finished Installing base system."
 }
