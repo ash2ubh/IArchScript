@@ -134,33 +134,34 @@ n
 +1GB
 t
 1
+
 n
 2
-
 +${SWAP_SIZE}
 t
 2
 19
+
 n
 3
-
 +${ROOT_SIZE}
 t
 3
 20
-p
 w
 EOF
 
     else
         fdisk $TARGET_DISK << EOF
 g
+
 n
 1
 
 +1GB
 t
 1
+
 n
 2
 
@@ -168,13 +169,14 @@ n
 t
 2
 19
+
 n
 3
+
 
 t
 3
 20
-p
 w
 EOF
 
