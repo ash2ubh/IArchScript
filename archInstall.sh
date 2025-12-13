@@ -128,6 +128,7 @@ diskpart_setup(){
 
         fdisk $TARGET_DISK << EOF
 g
+
 n
 1
 
@@ -137,6 +138,7 @@ t
 
 n
 2
+
 +${SWAP_SIZE}
 t
 2
@@ -144,6 +146,7 @@ t
 
 n
 3
+
 +${ROOT_SIZE}
 t
 3
